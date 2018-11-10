@@ -40,6 +40,9 @@ INSTALLED_APPS = [
 
     # My apps
     'blog',
+
+    #Pip installed
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
