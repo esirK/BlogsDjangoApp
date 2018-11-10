@@ -1,8 +1,18 @@
-<html>
-    <body>
-        <h2>MY posts</h2>
-        {% for post in posts %}
-            <li>{{ post }}</li>
-        {% endfor %}
-    </body>
-</html>
+{% extends "blog/base.html" %}
+{% block title %}Posts{% endblock %}
+
+{% block content %}
+    <div class="row">
+
+    {% for post in posts %}
+        <div class="card col-sm ml-3" style="width: 18rem;">
+          <img class="card-img-top" src="https://cdn-images-1.medium.com/max/1024/1*YLlZ96J3p8GFkIh1USVMzg.jpeg" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{ post.title }}</h5>
+            <p class="card-text">{{ post.body|truncatewords:5 }}</p>
+            <a href="{{ post.get_absolute_url }}" class="btn btn-primary">Detail</a>
+          </div>
+        </div>
+    {% endfor %}
+    </div>
+{% endblock %}
