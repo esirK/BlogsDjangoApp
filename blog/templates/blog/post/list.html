@@ -11,6 +11,7 @@
             <h5 class="card-title">{{ post.title }}</h5>
             <p class="card-text">{{ post.body|truncatewords:5 }}</p>
             <a href="{{ post.get_absolute_url }}" class="btn btn-primary">Detail</a>
+            <a href="{% url 'blog:post_share' post.id %}" class="btn btn-primary">Share</a>
           </div>
         </div>
     {% endfor %}
@@ -28,5 +29,23 @@
           </ul>
         </nav>
       </div>
-
+    <div class="modal" id="exampleModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Send Email</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h1>Share {{ post.title|truncatewords:4 }} by e-mail</h1>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

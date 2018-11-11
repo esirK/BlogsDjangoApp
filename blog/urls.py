@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from .views import post_list, post_detail, PostListView
+from .views import post_list, post_detail, PostListView, post_share
 
 app_name = "blog"
 
@@ -24,4 +24,5 @@ urlpatterns = [
     #path('posts/', post_list, name="posts"),
     path('posts/', PostListView.as_view(), name="posts"),
     path('posts/<slug:slug>/', post_detail, name="post"),
+    path('<int:post_id>/share/', post_share, name="post_share"),
 ]

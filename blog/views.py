@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.views.generic import ListView
 
+from .forms import EmailPostForm
 from .models import Post
 
 
@@ -26,6 +27,20 @@ def post_detail(request, slug):
     post = get_object_or_404(Post, slug=slug)
 
     return render(request, 'blog/post/detail.html', {'post': post})
+
+def post_share(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+
+    if request.method == 'POST':
+        # Form submitted
+        form = EmailPostForm(request.POST)
+        if form.is_valid():
+            #Form fields passed validation
+            import pdb; pdb.set_trace()
+            cd = form.cleaned_data
+    else:
+        form = EmailPostForm()
+    return render(request, 'blog/post/share.html', {'post': post, 'form': form})
 
 
 # Class Based view
