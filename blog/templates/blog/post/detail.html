@@ -4,4 +4,39 @@
     <h2>You are currently reading the post</h2>
 
     <p><span>{{ post.body }}</span></p>
+    {% if comments %}
+        <div class="d-flex flex-column">
+            <h3>Comments</h3>
+            <ol>
+            {% for comment in comments %}
+                <li>{{ comment.body }} <strong>-by {{ comment.post.author }}</strong></li>
+            {% endfor %}
+            </ol>
+
+        </div>
+    {% endif %}
+    <div class="modal" id="commentModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Comment</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="." method="post">
+                        {{ comment_form.as_p}}
+                        {% csrf_token %}
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+                </form>
+            </div>
+            </div>
+        </div>
+    </div>
+    <button type="button" class="btn btn-primary"
+            data-toggle="modal" data-target="#commentModal">Add Comment</button>
 {% endblock %}
