@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     #Pip installed
     'django_extensions',
+    'taggit',
 ]
 
 MIDDLEWARE = [
